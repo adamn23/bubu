@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine? </title>
+    <!-- Google Fonts for Gothic typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            /* Soft pink gradient background */
+            background: linear-gradient(135deg, #ff9ec7 0%, #ffb3d9 25%, #ffcce6 50%, #ffe6f2 75%, #fff0f8 100%);
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        /* Animated background hearts */
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: rgba(255, 105, 180, 0.6);
+            animation: float 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translateY(-100px) rotate(180deg);
+                opacity: 1;
+            }
+        }
+
+        /* Sparkle animation */
+        .sparkle {
+            position: absolute;
+            font-size: 15px;
+            color: #ff69b4;
+            animation: sparkle 2s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Rose decoration */
+        .rose {
+            position: absolute;
+            font-size: 30px;
+            color: #ff1493;
+            opacity: 0.4;
+            animation: sway 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes sway {
+            0%, 100% {
+                transform: rotate(-5deg);
+            }
+            50% {
+                transform: rotate(5deg);
+            }
+        }
+
+        /* Main container */
+        .container {
+            max-width: 600px;
+            width: 90%;
+            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            animation: fadeIn 1.5s ease-in;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Title with Gothic font */
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5em;
+            color: #d63384;
+            margin-bottom: 30px;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        /* Message card */
+        .message-card {
+            background: linear-gradient(135deg, #ffe6f2 0%, #fff0f8 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            border: 2px solid rgba(255, 105, 180, 0.3);
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Typing animation for message */
+        .message {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5em;
+            color: #d63384;
+            line-height: 1.8;
+            text-align: center;
+            min-height: 150px;
+            font-weight: 400;
+        }
+
+        .message .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.2em;
+            background-color: #ff1493;
+            animation: blink 1s infinite;
+            margin-left: 3px;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            0%, 50% {
+                opacity: 1;
+            }
+            51%, 100% {
+                opacity: 0;
+            }
+        }
+
+        /* Valentine button */
+        .valentine-button {
+            background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
+            color: white;
+            font-size: 1.5em;
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            padding: 20px 50px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 20, 147, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+
+        .valentine-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 20, 147, 0.5);
+        }
+
+        .valentine-button:active {
+            transform: scale(0.98);
+        }
+
+        .valentine-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .valentine-button:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Button container for side-by-side buttons */
+        .button-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        /* No button styling */
+        .no-button {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white;
+            font-size: 1.5em;
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            padding: 20px 50px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(220, 53, 69, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+
+        .no-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(220, 53, 69, 0.5);
+        }
+
+        .no-button:active {
+            transform: scale(0.98);
+        }
+
+        /* Screen shake animation */
+        @keyframes shake {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            10% { transform: translate(-10px, -5px) rotate(-2deg); }
+            20% { transform: translate(10px, 5px) rotate(2deg); }
+            30% { transform: translate(-10px, 5px) rotate(-2deg); }
+            40% { transform: translate(10px, -5px) rotate(2deg); }
+            50% { transform: translate(-10px, -5px) rotate(-2deg); }
+            60% { transform: translate(10px, 5px) rotate(2deg); }
+            70% { transform: translate(-10px, 5px) rotate(-2deg); }
+            80% { transform: translate(10px, -5px) rotate(2deg); }
+            90% { transform: translate(-10px, -5px) rotate(-2deg); }
+        }
+
+        body.shake {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        /* Red flash overlay */
+        .red-flash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(220, 53, 69, 0.8);
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0;
+            animation: flash 0.3s ease-out;
+        }
+
+        @keyframes flash {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* Popup overlay */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 182, 193, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .popup-overlay.show {
+            display: flex;
+        }
+
+        .popup-content {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(255, 20, 147, 0.5);
+            animation: popIn 0.5s ease-out;
+            position: relative;
+            max-width: 90%;
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .popup-content h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 3em;
+            color: #d63384;
+            margin-bottom: 20px;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        .popup-content p {
+            font-size: 1.5em;
+            color: #d63384;
+            margin-bottom: 30px;
+        }
+
+        /* Floating hearts animation */
+        .floating-heart {
+            position: absolute;
+            font-size: 30px;
+            color: #ff1493;
+            pointer-events: none;
+            animation: floatUp 3s ease-out forwards;
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-200px) scale(1.5);
+            }
+        }
+
+        /* Confetti particles */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff1493;
+            position: fixed;
+            pointer-events: none;
+            animation: confettiFall 3s ease-out forwards;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Music toggle button */
+        .music-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #ff1493;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5em;
+            color: #ff1493;
+            z-index: 100;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3);
+        }
+
+        .music-toggle:hover {
+            background: #ff1493;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .music-toggle.muted {
+            opacity: 0.5;
+        }
+
+        /* Anniversary countdown */
+        .anniversary-countdown {
+            margin-top: 40px;
+            padding: 25px 20px;
+            background: linear-gradient(135deg, #ffe6f2 0%, #fff0f8 100%);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 105, 180, 0.3);
+            text-align: center;
+        }
+
+        .anniversary-countdown h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3em;
+            color: #d63384;
+            margin-bottom: 8px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .anniversary-countdown .countdown-date {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9em;
+            color: #c41e7a;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .countdown-grid {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .countdown-unit {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid rgba(214, 51, 132, 0.4);
+            border-radius: 12px;
+            padding: 12px 16px;
+            min-width: 70px;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.2);
+        }
+
+        .countdown-unit .value {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #d63384;
+            display: block;
+            line-height: 1.2;
+        }
+
+        .countdown-unit .label {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.7em;
+            color: #c41e7a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        /* Bubu Dudu pictures section */
+        .bubu-dudu-pics {
+            margin-top: 35px;
+            padding: 25px 15px;
+            text-align: center;
+        }
+
+        .bubu-dudu-pics h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2em;
+            color: #d63384;
+            margin-bottom: 20px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .bubu-dudu-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .bubu-dudu-grid img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 3px solid rgba(214, 51, 132, 0.4);
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.35);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .bubu-dudu-grid img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 35px rgba(255, 105, 180, 0.5);
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+
+            .message {
+                font-size: 1.4em;
+            }
+
+            .valentine-button,
+            .no-button {
+                font-size: 1.2em;
+                padding: 15px 40px;
+            }
+
+            .button-container {
+                gap: 15px;
+            }
+
+            .popup-content h2 {
+                font-size: 2.2em;
+            }
+
+            .popup-content p {
+                font-size: 1.2em;
+            }
+
+            .container {
+                padding: 30px 20px;
+            }
+
+            .anniversary-countdown h3 {
+                font-size: 1.1em;
+            }
+
+            .countdown-unit .value {
+                font-size: 1.5em;
+            }
+
+            .countdown-unit {
+                padding: 10px 12px;
+                min-width: 60px;
+            }
+
+            .bubu-dudu-grid img {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .message {
+                font-size: 1.2em;
+            }
+
+            .valentine-button,
+            .no-button {
+                font-size: 1em;
+                padding: 12px 30px;
+            }
+
+            .button-container {
+                gap: 10px;
+            }
+
+            .anniversary-countdown {
+                margin-top: 30px;
+                padding: 20px 15px;
+            }
+
+            .anniversary-countdown h3 {
+                font-size: 1em;
+            }
+
+            .countdown-grid {
+                gap: 8px;
+            }
+
+            .countdown-unit {
+                padding: 8px 10px;
+                min-width: 55px;
+            }
+
+            .countdown-unit .value {
+                font-size: 1.3em;
+            }
+
+            .countdown-unit .label {
+                font-size: 0.65em;
+            }
+
+            .bubu-dudu-grid {
+                gap: 15px;
+            }
+
+            .bubu-dudu-grid img {
+                width: 130px;
+                height: 130px;
+            }
+
+            .bubu-dudu-pics h3 {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Music toggle button -->
+    <div class="music-toggle" id="musicToggle" title="Redbone — Childish Gambino">
+        🎵
+    </div>
+
+    <!-- Background decorative elements -->
+    <div id="backgroundDecorations"></div>
+
+    <!-- Main content container -->
+    <div class="container">
+        <h1>My Dearest Bubu 💖</h1>
+        
+        <!-- Message card with typing animation -->
+        <div class="message-card">
+            <div class="message" id="message"></div>
+        </div>
+
+        <!-- Bubu Dudu pictures (cute panda & teddy bear couple from Instagram/social media) -->
+        <div class="bubu-dudu-pics">
+            <h3>Bubu & Dudu</h3>
+            <p class="countdown-date" style="margin-bottom: 15px;">This is us yayyyy mish you sorry dudu sorry mish youuu</p>
+            <div class="bubu-dudu-grid">
+                <img src="https://image.pngaaa.com/247/7335247-middle.png" alt="Bubu Dudu - Bubu the cheerful white panda" title="Bubu">
+                <img src="https://i.etsystatic.com/54697506/r/il/43582b/6566698455/il_1588xN.6566698455_dxao.jpg" alt="Bubu Dudu - Cute panda and bear couple holding heart" title="Bubu & Dudu" onerror="this.onerror=null; this.src='https://via.placeholder.com/180x180/ffe6f2/d63384?text=Bubu+%26+Dudu';">
+            </div>
+        </div>
+
+        <!-- Button container -->
+        <div class="button-container">
+            <button class="valentine-button" id="valentineButton">
+                Will you be my Valentine? 💖
+            </button>
+            <button class="no-button" id="noButton">
+                No 😤
+            </button>
+        </div>
+
+        <!-- Our 1st Anniversary countdown -->
+        <div class="anniversary-countdown">
+            <h3>Our 1st Anniversary</h3>
+            <p class="countdown-date">September 25, 2026</p>
+            <div class="countdown-grid">
+                <div class="countdown-unit">
+                    <span class="value" id="countdown-days">—</span>
+                    <span class="label">Days</span>
+                </div>
+                <div class="countdown-unit">
+                    <span class="value" id="countdown-hours">—</span>
+                    <span class="label">Hours</span>
+                </div>
+                <div class="countdown-unit">
+                    <span class="value" id="countdown-minutes">—</span>
+                    <span class="label">Minutes</span>
+                </div>
+                <div class="countdown-unit">
+                    <span class="value" id="countdown-seconds">—</span>
+                    <span class="label">Seconds</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background music: Redbone by Childish Gambino (place redbone.mp3 in this folder) -->
+    <audio id="backgroundMusic" loop preload="metadata">
+        <source src="redbone.mp3" type="audio/mpeg">
+        <source src="redbone.ogg" type="audio/ogg">
+    </audio>
+
+    <!-- Popup overlay -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-content">
+            <h2>YAY!</h2>
+            <p>You're my Valentine! </p>
+            <p style="font-size: 1.2em; margin-top: 20px;">I love you more than words can say! ❤️</p>
+        </div>
+    </div>
+
+
+    <script>
+        // Romantic message script (under 1 minute to read)
+        const messageText = `My beautiful love,
+
+From the moment you came into my life, everything changed. Your smile lights up my world, your laugh is my favorite sound, and your heart is the most precious thing I've ever known.
+
+Every day with you feels like a dream. You fill my life with so much joy and happiness.
+
+Today, on this special day, I want to ask you something that's been on my heart...
+
+Will you be my Valentine? Not just today, but every day? Because every day with you feels like Valentine's Day to me.
+
+I love you more than I can express, and I'm so grateful to have you in my life. 💖`;
+
+        // Typing animation function
+        function typeMessage(element, text, speed = 50) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    // Remove cursor after typing is complete
+                    const cursor = element.querySelector('.cursor');
+                    if (cursor) {
+                        cursor.style.display = 'none';
+                    }
+                }
+            }
+            
+            type();
+        }
+
+        // Create floating hearts
+        function createFloatingHeart(x, y) {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.textContent = '💖';
+            heart.style.left = x + 'px';
+            heart.style.top = y + 'px';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 3000);
+        }
+
+        // Create confetti
+        function createConfetti() {
+            const colors = ['#ff1493', '#ff69b4', '#ffb6c1', '#ffc0cb', '#ff69b4'];
+            const confettiCount = 100;
+            
+            for (let i = 0; i < confettiCount; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = '-10px';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    confetti.style.width = (Math.random() * 10 + 5) + 'px';
+                    confetti.style.height = (Math.random() * 10 + 5) + 'px';
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 3000);
+                }, i * 30);
+            }
+        }
+
+        // Create background decorative elements
+        function createBackgroundDecorations() {
+            const container = document.getElementById('backgroundDecorations');
+            const heartCount = 50;
+            const sparkleCount = 100;
+            const roseCount = 10;
+            
+            // Create floating hearts
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = '💖';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.top = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 6 + 's';
+                heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+                container.appendChild(heart);
+            }
+            
+            // Create sparkles
+            for (let i = 0; i < sparkleCount; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.textContent = '✨';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 2 + 's';
+                container.appendChild(sparkle);
+            }
+            
+            // Create roses
+            for (let i = 0; i < roseCount; i++) {
+                const rose = document.createElement('div');
+                rose.className = 'rose';
+                rose.textContent = '🌹';
+                rose.style.left = Math.random() * 100 + '%';
+                rose.style.top = Math.random() * 100 + '%';
+                rose.style.animationDelay = Math.random() * 4 + 's';
+                container.appendChild(rose);
+            }
+        }
+
+        // Background music: Redbone by Childish Gambino
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        const musicToggle = document.getElementById('musicToggle');
+
+        musicToggle.addEventListener('click', function() {
+            if (backgroundMusic.paused) {
+                backgroundMusic.play().catch(function(e) {
+                    console.log('Playback failed (user interaction or file missing):', e.message);
+                });
+                musicToggle.classList.remove('muted');
+                musicToggle.textContent = '🎵';
+            } else {
+                backgroundMusic.pause();
+                musicToggle.classList.add('muted');
+                musicToggle.textContent = '🔇';
+            }
+        });
+
+        // Keep toggle state in sync with audio
+        backgroundMusic.addEventListener('play', function() {
+            musicToggle.classList.remove('muted');
+            musicToggle.textContent = '🎵';
+        });
+        backgroundMusic.addEventListener('pause', function() {
+            musicToggle.classList.add('muted');
+            musicToggle.textContent = '🔇';
+        });
+
+        // Valentine button click handler
+        const valentineButton = document.getElementById('valentineButton');
+        const popupOverlay = document.getElementById('popupOverlay');
+
+        valentineButton.addEventListener('click', function(e) {
+            // Get button position for heart animation
+            const rect = valentineButton.getBoundingClientRect();
+            const x = rect.left + rect.width / 2;
+            const y = rect.top + rect.height / 2;
+            
+            // Create multiple floating hearts
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    createFloatingHeart(
+                        x + (Math.random() - 0.5) * 100,
+                        y + (Math.random() - 0.5) * 50
+                    );
+                }, i * 50);
+            }
+            
+            // Create confetti
+            createConfetti();
+            
+            // Show popup
+            popupOverlay.classList.add('show');
+            
+            // Prevent button from being clicked again
+            valentineButton.style.pointerEvents = 'none';
+            valentineButton.style.opacity = '0.7';
+        });
+
+        // Close popup when clicking outside (optional)
+        popupOverlay.addEventListener('click', function(e) {
+            if (e.target === popupOverlay) {
+                popupOverlay.classList.remove('show');
+            }
+        });
+
+        // Play angry noise using Web Audio API
+        function playAngryNoise() {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                
+                // Create a harsh, dissonant sound
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                const distortion = audioContext.createWaveShaper();
+                
+                // Distortion curve for harsh sound
+                function makeDistortionCurve(amount) {
+                    const samples = 44100;
+                    const curve = new Float32Array(samples);
+                    const deg = Math.PI / 180;
+                    for (let i = 0; i < samples; i++) {
+                        const x = (i * 2) / samples - 1;
+                        curve[i] = ((3 + amount) * x * 20 * deg) / (Math.PI + amount * Math.abs(x));
+                    }
+                    return curve;
+                }
+                
+                distortion.curve = makeDistortionCurve(400);
+                distortion.oversample = '4x';
+                
+                oscillator.connect(distortion);
+                distortion.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                // Harsh, low frequency sound
+                oscillator.type = 'sawtooth';
+                oscillator.frequency.setValueAtTime(80, audioContext.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(40, audioContext.currentTime + 0.3);
+                
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.3);
+            } catch (e) {
+                console.log('Audio not supported');
+            }
+        }
+
+        // No button click handler
+        const noButton = document.getElementById('noButton');
+        
+        noButton.addEventListener('click', function() {
+            // Shake the screen
+            document.body.classList.add('shake');
+            setTimeout(() => {
+                document.body.classList.remove('shake');
+            }, 500);
+            
+            // Flash red
+            const redFlash = document.createElement('div');
+            redFlash.className = 'red-flash';
+            document.body.appendChild(redFlash);
+            setTimeout(() => {
+                redFlash.remove();
+            }, 300);
+            
+            // Play angry noise
+            playAngryNoise();
+            
+            // Move the No button randomly (make it harder to click)
+            const maxAttempts = 5;
+            let attempts = 0;
+            const moveButton = () => {
+                if (attempts < maxAttempts) {
+                    const randomX = (Math.random() - 0.5) * 500;
+                    const randomY = (Math.random() - 0.5) * 500;
+                    noButton.style.transform = `translate(${randomX}px, ${randomY}px)`;
+                    noButton.style.transition = 'transform 0.1s ease-out';
+                    attempts++;
+                    setTimeout(() => {
+                        noButton.style.transform = 'translate(0, 0)';
+                        setTimeout(moveButton, 100);
+                    }, 100);
+                } else {
+                    noButton.style.transform = 'translate(0, 0)';
+                }
+            };
+            moveButton();
+        });
+
+        // Anniversary countdown: September 25, 2026
+        const ANNIVERSARY_DATE = new Date('2026-09-25T00:00:00');
+
+        function updateAnniversaryCountdown() {
+            const now = new Date();
+            const diff = ANNIVERSARY_DATE - now;
+
+            const daysEl = document.getElementById('countdown-days');
+            const hoursEl = document.getElementById('countdown-hours');
+            const minutesEl = document.getElementById('countdown-minutes');
+            const secondsEl = document.getElementById('countdown-seconds');
+
+            if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+
+            if (diff <= 0) {
+                daysEl.textContent = '0';
+                hoursEl.textContent = '0';
+                minutesEl.textContent = '0';
+                secondsEl.textContent = '0';
+                return;
+            }
+
+            const totalSeconds = Math.floor(diff / 1000);
+            const days = Math.floor(totalSeconds / 86400);
+            const hours = Math.floor((totalSeconds % 86400) / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+
+            daysEl.textContent = String(days);
+            hoursEl.textContent = String(hours).padStart(2, '0');
+            minutesEl.textContent = String(minutes).padStart(2, '0');
+            secondsEl.textContent = String(seconds).padStart(2, '0');
+        }
+
+        // Initialize page
+        window.addEventListener('DOMContentLoaded', function() {
+            // Start typing animation
+            const messageElement = document.getElementById('message');
+            messageElement.innerHTML = '<span class="cursor"></span>';
+            setTimeout(() => {
+                typeMessage(messageElement, messageText, 30);
+            }, 500);
+
+            // Start anniversary countdown and update every second
+            updateAnniversaryCountdown();
+            setInterval(updateAnniversaryCountdown, 1000);
+
+            // Create background decorations
+            createBackgroundDecorations();
+        });
+    </script>
+</body>
+</html>
